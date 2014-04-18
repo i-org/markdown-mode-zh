@@ -1667,7 +1667,7 @@ If the point is not in a list item, do nothing."
     ;; Don't skip over whitespace for empty list items (marker and
     ;; whitespace only), just move to end of whitespace.
     (if (looking-back (concat markdown-regex-list "\\s-*"))
-          (goto-char (match-end 3))
+        (goto-char (match-end 3))
       (skip-syntax-backward "-"))))
 
 (defun markdown-cur-list-item-bounds ()
@@ -1888,7 +1888,7 @@ because `thing-at-point-looking-at' does not work reliably with
              (set-match-data (list key-beginning (point) ; complete metadata
                                    key-beginning key-end ; key
                                    value-beginning (point))) ; value
-           t))
+             t))
           (t nil))))
 
 (defun markdown-match-multimarkdown-metadata (last)
@@ -3217,7 +3217,17 @@ See also `markdown-mode-map'.")
   '("〖编辑MD〗"
     ("Show/Hide 结构显示/隐藏"
      ["Cycle visibility" markdown-cycle (outline-on-heading-p)]
-     ["Cycle global visibility" markdown-shifttab])
+     ["Cycle global visibility" markdown-shifttab]
+     "---"
+     ["Next visible heading" outline-next-visible-heading]
+     ["Previous visible heading" outline-previous-visible-heading]
+     ["Forward same level" outline-forward-same-level]
+     ["Backward same level" outline-backward-same-level]
+     ["Up to parent heading" outline-up-heading]
+     "---"
+     ["Jump" markdown-jump]
+     ["Follow link" markdown-follow-thing-at-point]
+     )
     "---"
     ("File 文件操作"
      ["预览" markdown-preview]
@@ -3227,63 +3237,54 @@ See also `markdown-mode-map'.")
      ["Open" markdown-open]
      ["Kill ring save" markdown-kill-ring-save])
     "---"
-    ("文内导航"
-     ["Next visible heading" outline-next-visible-heading]
-     ["Previous visible heading" outline-previous-visible-heading]
-     ["Forward same level" outline-forward-same-level]
-     ["Backward same level" outline-backward-same-level]
-     ["Up to parent heading" outline-up-heading]
-     "---"
-     ["Jump" markdown-jump]
-     ["Follow link" markdown-follow-thing-at-point])
-    ("Edit Structure 改动结构"
-     ["Automatic" markdown-insert-header-dwim]
+    ("改动结构"
+     ["自动级别" markdown-insert-header-dwim]
      ["Automatic (prefer setext)" markdown-insert-header-setext-dwim]
      "---"
-     ["First level setext" markdown-insert-header-setext-1]
-     ["Second level setext" markdown-insert-header-setext-2]
+     ["一级 setext" markdown-insert-header-setext-1]
+     ["二级 setext" markdown-insert-header-setext-2]
      "---"
-     ["First level atx" markdown-insert-header-atx-1]
-     ["Second level atx" markdown-insert-header-atx-2]
-     ["Third level atx" markdown-insert-header-atx-3]
-     ["Fourth level atx" markdown-insert-header-atx-4]
-     ["Fifth level atx" markdown-insert-header-atx-5]
-     ["Sixth level atx" markdown-insert-header-atx-6])
+     ["一级 atx" markdown-insert-header-atx-1]
+     ["二级 atx" markdown-insert-header-atx-2]
+     ["三级 atx" markdown-insert-header-atx-3]
+     ["四级 atx" markdown-insert-header-atx-4]
+     ["五级 atx" markdown-insert-header-atx-5]
+     ["六级 atx" markdown-insert-header-atx-6])
     "---"
     ["加粗" markdown-insert-bold]
     ["斜体" markdown-insert-italic]
     ["Blockquote" markdown-insert-blockquote]
-    ["Preformatted" markdown-insert-pre]
-    ["Code" markdown-insert-code]
+    ["代码区 pre" markdown-insert-pre]
+    ["代码块 code" markdown-insert-code]
+    ("增减缩进区域"
+     ["增缩进" markdown-indent-region]
+     ["减缩进" markdown-exdent-region])
     "---"
-    ["Insert list item" markdown-insert-list-item]
+    ["插入列表项" markdown-insert-list-item]
     ["Clean up list numbering" markdown-cleanup-list-numbers]
-    ["Indent list item" markdown-demote]
-    ["Extend list item" markdown-promote]
+    ["增列表项缩进" markdown-demote]
+    ["减列表项缩进" markdown-promote]
     "---"
     ["Insert inline link" markdown-insert-link]
     ["Insert reference link" markdown-insert-reference-link-dwim]
-    ["Insert URL" markdown-insert-uri]
+    ["插入URL" markdown-insert-uri]
     ["Insert inline image" markdown-insert-image]
     ["Insert reference image" markdown-insert-reference-image]
-    ["Insert horizontal rule" markdown-insert-hr]
-    ["Insert footnote" markdown-insert-footnote]
+    ["插入横线" markdown-insert-hr]
+    ["插入脚注" markdown-insert-footnote]
     ["Kill element" markdown-kill-thing-at-point]
     "---"
-    ("Completion and Cycling"
-     ["Complete" markdown-complete]
-     ["Promote" markdown-promote]
-     ["Demote" markdown-demote]
-     "---"
-     ["Complete markup" markdown-complete-buffer])
-    ("左右缩进区域"
-     ["Indent region" markdown-indent-region]
-     ["Extend region" markdown-exdent-region])
-    "---"
-    ("文档"
-     ["查看文档" markdown-check-refs]
-     ["版本" markdown-show-version])
-    ))
+  ("Completion and Cycling"
+   ["Complete" markdown-complete]
+   ["Promote" markdown-promote]
+   ["Demote" markdown-demote]
+   "---"
+   ["Complete markup" markdown-complete-buffer])
+   "---"
+   ("文档"
+    ["查看文档" markdown-check-refs]
+    ["版本" markdown-show-version])
+   ))
 
 
 ;;; imenu =====================================================================
@@ -4410,21 +4411,21 @@ given range."
          (inhibit-point-motion-hooks t)
          deactivate-mark
          buffer-file-truename)
-     (unwind-protect
-         (save-excursion
-           (save-match-data
-             (save-restriction
-               ;; Extend the region to fontify so that it starts
-               ;; and ends at safe places.
-               (multiple-value-bind (new-from new-to)
-                   (markdown-extend-changed-region from to)
-                 ;; Unfontify existing fontification (start from scratch)
-                 (markdown-unfontify-region-wiki-links new-from new-to)
-                 ;; Now do the fontification.
-                 (markdown-fontify-region-wiki-links new-from new-to)))))
-       (and (not modified)
-            (buffer-modified-p)
-            (set-buffer-modified-p nil)))))
+    (unwind-protect
+        (save-excursion
+          (save-match-data
+            (save-restriction
+              ;; Extend the region to fontify so that it starts
+              ;; and ends at safe places.
+              (multiple-value-bind (new-from new-to)
+                  (markdown-extend-changed-region from to)
+                ;; Unfontify existing fontification (start from scratch)
+                (markdown-unfontify-region-wiki-links new-from new-to)
+                ;; Now do the fontification.
+                (markdown-fontify-region-wiki-links new-from new-to)))))
+      (and (not modified)
+           (buffer-modified-p)
+           (set-buffer-modified-p nil)))))
 
 (defun markdown-fontify-buffer-wiki-links ()
   "Refontify all wiki links in the buffer."
