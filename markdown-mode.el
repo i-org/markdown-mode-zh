@@ -3186,7 +3186,7 @@ Assumes match data is available for `markdown-regex-italic'."
     (define-key map (kbd "M-<down>") 'markdown-move-down)
     (define-key map (kbd "M-<left>") 'markdown-promote)
     (define-key map (kbd "M-<right>") 'markdown-demote)
-    (define-key map (kbd "M-<return>") 'markdown-insert-list-item)
+    (define-key map (kbd "M-l") 'markdown-insert-list-item)
     ;; Movement
     (define-key map (kbd "M-{") 'markdown-backward-paragraph)
     (define-key map (kbd "M-}") 'markdown-forward-paragraph)
