@@ -3124,7 +3124,7 @@ Assumes match data is available for `markdown-regex-italic'."
     (define-key map "\C-c\C-aw" 'markdown-insert-wiki-link)
     (define-key map "\C-c\C-ii" 'markdown-insert-image)
     (define-key map "\C-c\C-iI" 'markdown-insert-reference-image)
-    (define-key map "\C-c\C-th" 'markdown-insert-header-dwim)
+    (define-key map (kbd "M-<RET>") 'markdown-insert-header-dwim)
     (define-key map "\C-c\C-tH" 'markdown-insert-header-setext-dwim)
     (define-key map "\C-c\C-t1" 'markdown-insert-header-atx-1)
     (define-key map "\C-c\C-t2" 'markdown-insert-header-atx-2)
@@ -3158,8 +3158,8 @@ Assumes match data is available for `markdown-regex-italic'."
     ;; Indentation
     (define-key map (kbd "C-m") 'markdown-enter-key)
     (define-key map (kbd "<backspace>") 'markdown-exdent-or-delete)
-    (define-key map (kbd "C-c >") 'markdown-indent-region)
-    (define-key map (kbd "C-c <") 'markdown-exdent-region)
+    (define-key map (kbd "C-c <left>") 'markdown-indent-region)
+    (define-key map (kbd "C-c <right>") 'markdown-exdent-region)
     ;; Visibility cycling
     (define-key map (kbd "<tab>") 'markdown-cycle)
     (define-key map (kbd "<S-iso-lefttab>") 'markdown-shifttab)
@@ -3174,7 +3174,7 @@ Assumes match data is available for `markdown-regex-italic'."
     ;; Buffer-wide commands
     (define-key map (kbd "C-c C-c m") 'markdown-other-window)
     (define-key map (kbd "C-c C-c p") 'markdown-preview)
-    (define-key map (kbd "C-c C-c e") 'markdown-export)
+    (define-key map (kbd "C-c C-e") 'markdown-export)
     (define-key map (kbd "C-c C-c v") 'markdown-export-and-preview)
     (define-key map (kbd "C-c C-c o") 'markdown-open)
     (define-key map (kbd "C-c C-c w") 'markdown-kill-ring-save)
@@ -3214,20 +3214,20 @@ See also `markdown-mode-map'.")
 
 (easy-menu-define markdown-mode-menu markdown-mode-map
   "Menu for Markdown mode"
-  '("【Markdown】"
+  '("〖编辑MD〗"
     ("Show/Hide 结构显示/隐藏"
      ["Cycle visibility" markdown-cycle (outline-on-heading-p)]
      ["Cycle global visibility" markdown-shifttab])
     "---"
     ("File 文件操作"
-     ["Preview" markdown-preview]
-     ["Export" markdown-export]
-     ["Export & View" markdown-export-and-preview]
+     ["预览" markdown-preview]
+     ["导出" markdown-export]
+     ["导出 & 预览" markdown-export-and-preview]
      ["Compile" markdown-other-window]
      ["Open" markdown-open]
      ["Kill ring save" markdown-kill-ring-save])
     "---"
-    ("Navigation 文内导航"
+    ("文内导航"
      ["Next visible heading" outline-next-visible-heading]
      ["Previous visible heading" outline-previous-visible-heading]
      ["Forward same level" outline-forward-same-level]
@@ -3250,8 +3250,8 @@ See also `markdown-mode-map'.")
      ["Fifth level atx" markdown-insert-header-atx-5]
      ["Sixth level atx" markdown-insert-header-atx-6])
     "---"
-    ["Bold" markdown-insert-bold]
-    ["Italic" markdown-insert-italic]
+    ["加粗" markdown-insert-bold]
+    ["斜体" markdown-insert-italic]
     ["Blockquote" markdown-insert-blockquote]
     ["Preformatted" markdown-insert-pre]
     ["Code" markdown-insert-code]
@@ -3276,13 +3276,13 @@ See also `markdown-mode-map'.")
      ["Demote" markdown-demote]
      "---"
      ["Complete markup" markdown-complete-buffer])
-    ("Indent/Extend Region"
+    ("左右缩进区域"
      ["Indent region" markdown-indent-region]
      ["Extend region" markdown-exdent-region])
     "---"
-    ("Help"
-     ["Check references" markdown-check-refs]
-     ["Version" markdown-show-version])
+    ("文档"
+     ["查看文档" markdown-check-refs]
+     ["版本" markdown-show-version])
     ))
 
 
