@@ -3215,21 +3215,21 @@ See also `markdown-mode-map'.")
 (easy-menu-define markdown-mode-menu markdown-mode-map
   "Menu for Markdown mode"
   '("〖编辑MD〗"
-    ("Show/Hide 结构显示/隐藏"
+    ("显/隐 结构"
      ["Cycle visibility" markdown-cycle (outline-on-heading-p)]
      ["Cycle global visibility" markdown-shifttab]
+     "---"     
+     ["上一可见标题" outline-previous-visible-heading]
+     ["下一可见标题" outline-next-visible-heading]
+     ["前一同级标题" outline-forward-same-level]
+     ["后一同级标题" outline-backward-same-level]
+     ["到本级父标题" outline-up-heading]
      "---"
-     ["Next visible heading" outline-next-visible-heading]
-     ["Previous visible heading" outline-previous-visible-heading]
-     ["Forward same level" outline-forward-same-level]
-     ["Backward same level" outline-backward-same-level]
-     ["Up to parent heading" outline-up-heading]
-     "---"
-     ["Jump" markdown-jump]
+     ["跳到链接处" markdown-jump]
      ["Follow link" markdown-follow-thing-at-point]
      )
     "---"
-    ("File 文件操作"
+    ("文件操作"
      ["预览" markdown-preview]
      ["导出" markdown-export]
      ["导出 & 预览" markdown-export-and-preview]
@@ -3237,7 +3237,7 @@ See also `markdown-mode-map'.")
      ["Open" markdown-open]
      ["Kill ring save" markdown-kill-ring-save])
     "---"
-    ("改动结构"
+    ("设定结构"
      ["自动级别" markdown-insert-header-dwim]
      ["Automatic (prefer setext)" markdown-insert-header-setext-dwim]
      "---"
@@ -3266,13 +3266,13 @@ See also `markdown-mode-map'.")
     ["减列表项缩进" markdown-promote]
     "---"
     ["Insert inline link" markdown-insert-link]
-    ["Insert reference link" markdown-insert-reference-link-dwim]
-    ["插入URL" markdown-insert-uri]
+    ["插入内部链接Insert reference link" markdown-insert-reference-link-dwim]
+    ["插入网址" markdown-insert-uri]
     ["Insert inline image" markdown-insert-image]
     ["Insert reference image" markdown-insert-reference-image]
     ["插入横线" markdown-insert-hr]
     ["插入脚注" markdown-insert-footnote]
-    ["Kill element" markdown-kill-thing-at-point]
+    ["删掉当前markdown元素" markdown-kill-thing-at-point]
     "---"
   ("Completion and Cycling"
    ["Complete" markdown-complete]
