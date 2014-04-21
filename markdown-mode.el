@@ -3139,8 +3139,8 @@ Assumes match data is available for `markdown-regex-italic'."
     (define-key map "\C-c\C-sc" 'markdown-insert-code)
     (define-key map "\C-c\C-sb" 'markdown-insert-blockquote)
     (define-key map "\C-c\C-s\C-b" 'markdown-blockquote-region)
-    (define-key map "\C-c\C-sp" 'markdown-insert-pre)
-    (define-key map "\C-c\C-s\C-p" 'markdown-pre-region)
+    (define-key map (kbd "C-c '") 'markdown-insert-pre)
+    (define-key map (kbd "C-c '") 'markdown-pre-region)
     (define-key map "\C-c-" 'markdown-insert-hr)
     ;; Element insertion (deprecated)
     (define-key map "\C-c\C-ar" 'markdown-insert-reference-link-dwim)
@@ -3238,9 +3238,6 @@ See also `markdown-mode-map'.")
      ["Kill ring save" markdown-kill-ring-save])
     "---"
     ("设定结构"
-     ["自动级别" markdown-insert-header-dwim]
-     ["Automatic (prefer setext)" markdown-insert-header-setext-dwim]
-     "---"
      ["一级 setext" markdown-insert-header-setext-1]
      ["二级 setext" markdown-insert-header-setext-2]
      "---"
@@ -3249,7 +3246,10 @@ See also `markdown-mode-map'.")
      ["三级 atx" markdown-insert-header-atx-3]
      ["四级 atx" markdown-insert-header-atx-4]
      ["五级 atx" markdown-insert-header-atx-5]
-     ["六级 atx" markdown-insert-header-atx-6])
+     ["六级 atx" markdown-insert-header-atx-6]
+     "---"
+     ["自动级别" markdown-insert-header-dwim]
+     ["Automatic (prefer setext)" markdown-insert-header-setext-dwim])
     "---"
     ["加粗" markdown-insert-bold]
     ["斜体" markdown-insert-italic]
@@ -4139,10 +4139,10 @@ Standalone XHTML output is identified by an occurrence of
 
 (defun markdown-add-xhtml-header-and-footer (title)
   "Wrap XHTML header and footer with given TITLE around current buffer."
-  (insert "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-          "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n"
-          "\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n\n"
-          "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n\n"
+  (insert "<!DOCTYPE html>\n"
+          "<html>\n"
+          "<meta charset=\"utf-8\">\n"
+          "<meta name=\"viewport\" content=\"width=divice-width, initial-scale=1.0\">\n"
           "<head>\n<title>")
   (insert title)
   (insert "</title>\n")
@@ -4158,9 +4158,9 @@ Standalone XHTML output is identified by an occurrence of
           (and (fboundp 'coding-system-get)
                (coding-system-get buffer-file-coding-system
                                   'mime-charset))
-          "iso-8859-1"))))
+          "utf-8"))))
   (if (> (length markdown-css-path) 0)
-      (insert "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\""
+      (insert "<link rel=\"stylesheet\" href=\""
               markdown-css-path
               "\"  />\n"))
   (when (> (length markdown-xhtml-header-content) 0)
