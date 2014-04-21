@@ -3140,7 +3140,7 @@ Assumes match data is available for `markdown-regex-italic'."
     (define-key map "\C-c\C-sb" 'markdown-insert-blockquote)
     (define-key map "\C-c\C-s\C-b" 'markdown-blockquote-region)
     (define-key map (kbd "C-c '") 'markdown-insert-pre)
-    (define-key map (kbd "C-c '") 'markdown-pre-region)
+    (define-key map (kbd "C-,") 'markdown-pre-region)
     (define-key map "\C-c-" 'markdown-insert-hr)
     ;; Element insertion (deprecated)
     (define-key map "\C-c\C-ar" 'markdown-insert-reference-link-dwim)
