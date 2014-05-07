@@ -3214,7 +3214,7 @@ See also `markdown-mode-map'.")
 
 (easy-menu-define markdown-mode-menu markdown-mode-map
   "Menu for Markdown mode"
-  '("〖编辑MD〗"
+  '("〖码道式〗"
     ("显/隐 结构"
      ["Cycle visibility" markdown-cycle (outline-on-heading-p)]
      ["Cycle global visibility" markdown-shifttab]
@@ -3261,7 +3261,7 @@ See also `markdown-mode-map'.")
      ["减缩进" markdown-exdent-region])
     "---"
     ["插入列表项" markdown-insert-list-item]
-    ["Clean up list numbering" markdown-cleanup-list-numbers]
+    ["列表编号重整" markdown-cleanup-list-numbers]
     ["增列表项缩进" markdown-demote]
     ["减列表项缩进" markdown-promote]
     "---"
