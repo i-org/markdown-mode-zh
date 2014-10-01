@@ -3230,14 +3230,14 @@ See also `markdown-mode-map'.")
      )
     "---"
     ("文件操作"
-     ["预览" markdown-preview]
+     ["内容预览" markdown-preview]
+     ["预编译" markdown-other-window]
      ["导出" markdown-export]
      ["导出 & 预览" markdown-export-and-preview]
-     ["Compile" markdown-other-window]
      ["Open" markdown-open]
      ["Kill ring save" markdown-kill-ring-save])
     "---"
-    ("设定结构"
+    ("设定标题级别"
      ["一级 setext" markdown-insert-header-setext-1]
      ["二级 setext" markdown-insert-header-setext-2]
      "---"
@@ -3253,26 +3253,26 @@ See also `markdown-mode-map'.")
     "---"
     ["加粗" markdown-insert-bold]
     ["斜体" markdown-insert-italic]
-    ["Blockquote" markdown-insert-blockquote]
+    ["引言 blockquote" markdown-insert-blockquote]
     ["代码区 pre" markdown-insert-pre]
     ["代码块 code" markdown-insert-code]
     ("增减缩进区域"
      ["增缩进" markdown-indent-region]
      ["减缩进" markdown-exdent-region])
     "---"
-    ["插入列表项" markdown-insert-list-item]
-    ["列表编号重整" markdown-cleanup-list-numbers]
-    ["增列表项缩进" markdown-demote]
-    ["减列表项缩进" markdown-promote]
+    ["插入 列表项" markdown-insert-list-item]
+    ["重整 列表编号" markdown-cleanup-list-numbers]
+    ["增 列表项缩进" markdown-demote]
+    ["减 列表项缩进" markdown-promote]
     "---"
-    ["Insert inline link" markdown-insert-link]
-    ["插入内部链接Insert reference link" markdown-insert-reference-link-dwim]
-    ["插入网址" markdown-insert-uri]
+    ["插入网址 inline link" markdown-insert-link]
+    ["插入内部链接 reference link" markdown-insert-reference-link-dwim]
+    ["插入网址 uri" markdown-insert-uri]
     ["Insert inline image" markdown-insert-image]
     ["Insert reference image" markdown-insert-reference-image]
     ["插入横线" markdown-insert-hr]
     ["插入脚注" markdown-insert-footnote]
-    ["删掉当前markdown元素" markdown-kill-thing-at-point]
+    ["删掉当前 码道 元素" markdown-kill-thing-at-point]
     "---"
   ("Completion and Cycling"
    ["Complete" markdown-complete]
