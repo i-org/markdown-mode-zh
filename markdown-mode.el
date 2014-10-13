@@ -3215,20 +3215,6 @@ See also `markdown-mode-map'.")
 (easy-menu-define markdown-mode-menu markdown-mode-map
   "Menu for Markdown mode"
   '("〖码道式〗"
-    ("显/隐 结构"
-     ["Cycle visibility" markdown-cycle (outline-on-heading-p)]
-     ["Cycle global visibility" markdown-shifttab]
-     "---"     
-     ["上一可见标题" outline-previous-visible-heading]
-     ["下一可见标题" outline-next-visible-heading]
-     ["前一同级标题" outline-forward-same-level]
-     ["后一同级标题" outline-backward-same-level]
-     ["到本级父标题" outline-up-heading]
-     "---"
-     ["跳到链接处" markdown-jump]
-     ["Follow link" markdown-follow-thing-at-point]
-     )
-    "---"
     ("文件操作"
      ["内容预览" markdown-preview]
      ["预编译" markdown-other-window]
@@ -3249,7 +3235,7 @@ See also `markdown-mode-map'.")
      ["六级 atx" markdown-insert-header-atx-6]
      "---"
      ["自动级别" markdown-insert-header-dwim]
-     ["Automatic (prefer setext)" markdown-insert-header-setext-dwim])
+     ["自动级别 (优先使用 setext)" markdown-insert-header-setext-dwim])
     "---"
     ["加粗" markdown-insert-bold]
     ["斜体" markdown-insert-italic]
@@ -3268,19 +3254,33 @@ See also `markdown-mode-map'.")
     ["插入网址 inline link" markdown-insert-link]
     ["插入内部链接 reference link" markdown-insert-reference-link-dwim]
     ["插入网址 uri" markdown-insert-uri]
-    ["Insert inline image" markdown-insert-image]
-    ["Insert reference image" markdown-insert-reference-image]
+    ["插入图片 inline image" markdown-insert-image]
+    ["插入图片 reference image" markdown-insert-reference-image]
     ["插入横线" markdown-insert-hr]
     ["插入脚注" markdown-insert-footnote]
     ["删掉当前 码道 元素" markdown-kill-thing-at-point]
     "---"
-  ("Completion and Cycling"
-   ["Complete" markdown-complete]
-   ["Promote" markdown-promote]
-   ["Demote" markdown-demote]
+  ("标记补全 标记等级切换 "
+   ["补全" markdown-complete]
+   ["增一级" markdown-promote]
+   ["减一级" markdown-demote]
    "---"
-   ["Complete markup" markdown-complete-buffer])
+   ["补全页面内所有标记" markdown-complete-buffer])
    "---"
+  ("查看 显/隐 结构"
+     ["显/隐 逐级可见" markdown-cycle (outline-on-heading-p)]
+     ["显/隐 全文可见" markdown-shifttab]
+     "---"
+     ["上一可见标题" outline-previous-visible-heading]
+     ["下一可见标题" outline-next-visible-heading]
+     ["前一同级标题" outline-forward-same-level]
+     ["后一同级标题" outline-backward-same-level]
+     ["到本级父标题" outline-up-heading]
+     "---"
+     ["跳到链接处" markdown-jump]
+     ["Follow link" markdown-follow-thing-at-point]
+     )
+    "---"   
    ("文档"
     ["查看文档" markdown-check-refs]
     ["版本" markdown-show-version])
