@@ -3,23 +3,38 @@
 
 > 码之道，不肥不瘦，不多不少，极尽简洁
 
-说明：根据[markdown mode](http://jblevins.org/projects/markdown-mode/) 2.0改。
+说明：根据[emacs markdown mode](https://github.com/jrblevin/markdown-mode.git)修改。
 
-+ 把菜单翻译为中文
-+ 由于原模式的菜单混乱，因此整理了相关菜单项。
-+ 改了快捷方式，使得和orgmode接近，这样可以不用重新学习快捷键。
+## 修改内容：
+
+- 把菜单翻译为中文
+- 由于原模式的菜单混乱，因此整理了相关菜单项。
+- 改了快捷方式，使得和orgmode接近，这样可以不用重新学习快捷键。
 
 
 效果如下：
 
-![码道中文](markdown-zh.png)
+![码道中文](screenshot/markdown-zh.png)
 
 ## 更新情况
 
 1. 201305 基于2.0添加中文菜单
-2. 20160821 更新到2.1
+2. 20160821 更新到2.1，把源码中没啥用的版本历史、贡献者信息移到说明文中。
+
+## 系统依赖
+
+下面这三个是说明文中没提及，但必需的，两个可选一个即可。
+
+- markdown.pl 操作系统里安装，默认用于转码的基础库。
+- pandoc 操作系统里安装，可选转码的库
+- marked gfm的渲染库
+
+也就是必需设置 markdown-command，否则将导致找不到渲染引擎
 
 
+# 说明
+
+---
 
 # Emacs Markdown Mode [![MELPA badge][melpa-badge]][melpa-link] [![MELPA stable badge][melpa-stable-badge]][melpa-stable-link] [![Travis CI Build Status][travis-badge]][travis-link]
 
@@ -38,7 +53,7 @@ text. The latest stable version is markdown-mode 2.1, released on
 January 9, 2016. See the [release notes][] for details.
 markdown-mode is free software, licensed under the GNU GPL.
 
-![Markdown Mode Screenshot](http://jblevins.org/projects/markdown-mode/screenshots/20160108-001.png)
+![Markdown Mode Screenshot](screenshot/markdown-mode.png)
 
 [Markdown]: http://daringfireball.net/projects/markdown/
 [release notes]: http://jblevins.org/projects/markdown-mode/rev-2-1
@@ -771,7 +786,43 @@ by `markdown-mode` and `gfm-mode` as described below.
 [since 2014]: https://github.com/blog/1825-task-lists-in-all-markdown-documents
 [Docter]: https://github.com/alampros/Docter
 
+
+
 ## Acknowledgments
+
+### copyright
+
+- Copyright (C) 2007-2016 Jason R. Blevins <jrblevin@sdf.org>
+- Copyright (C) 2007, 2009 Edward O'Connor <ted@oconnor.cx>
+- Copyright (C) 2007 Conal Elliott <conal@conal.net>
+- Copyright (C) 2008 Greg Bognar <greg_bognar@hms.harvard.edu>
+- Copyright (C) 2008 Dmitry Dzhus <mail@sphinx.net.ru>
+- Copyright (C) 2008 Bryan Kyle <bryan.kyle@gmail.com>
+- Copyright (C) 2008 Ben Voui <intrigeri@boum.org>
+- Copyright (C) 2009 Ankit Solanki <ankit.solanki@gmail.com>
+- Copyright (C) 2009 Hilko Bengen <bengen@debian.org>
+- Copyright (C) 2009 Peter Williams <pezra@barelyenough.org>
+- Copyright (C) 2010 George Ogata <george.ogata@gmail.com>
+- Copyright (C) 2011 Eric Merritt <ericbmerritt@gmail.com>
+- Copyright (C) 2011 Philippe Ivaldi <pivaldi@sfr.fr>
+- Copyright (C) 2011 Jeremiah Dodds <jeremiah.dodds@gmail.com>
+- Copyright (C) 2011 Christopher J. Madsen <cjm@cjmweb.net>
+- Copyright (C) 2011 Shigeru Fukaya <shigeru.fukaya@gmail.com>
+- Copyright (C) 2011 Joost Kremers <joostkremers@fastmail.fm>
+- Copyright (C) 2011-2012 Donald Ephraim Curtis <dcurtis@milkbox.net>
+- Copyright (C) 2012 Akinori Musha <knu@idaemons.org>
+- Copyright (C) 2012 Zhenlei Jia <zhenlei.jia@gmail.com>
+- Copyright (C) 2012 Peter Jones <pjones@pmade.com>
+- Copyright (C) 2013 Matus Goljer <dota.keys@gmail.com>
+- Copyright (C) 2015 Google, Inc. (Contributor: Samuel Freilich <sfreilich@google.com>)
+- Copyright (C) 2015 Antonis Kanouras <antonis@metadosis.gr>
+- Copyright (C) 2015 Howard Melman <hmelman@gmail.com>
+- Copyright (C) 2015-2016 Danny McClanahan <danieldmcclanahan@gmail.com>
+- Copyright (C) 2015-2016 Syohei Yoshida <syohex@gmail.com>
+- Copyright (C) 2016 Vitalie Spinu <spinuvit@gmail.com>
+
+
+### Contributor
 
 markdown-mode has benefited greatly from the efforts of the
 following people:
@@ -891,24 +942,13 @@ first version was released on May 24, 2007.
 
   * 2007-05-24: Version 1.1
   * 2007-05-25: Version 1.2
-  * 2007-06-05: [Version 1.3][]
+  * 2007-06-05: [Version 1.3](http://jblevins.org/projects/markdown-mode/rev-1-3)
   * 2007-06-29: Version 1.4
-  * 2007-10-11: [Version 1.5][]
-  * 2008-06-04: [Version 1.6][]
-  * 2009-10-01: [Version 1.7][]
-  * 2011-08-12: [Version 1.8][]
-  * 2011-08-15: [Version 1.8.1][]
-  * 2013-01-25: [Version 1.9][]
-  * 2013-03-24: [Version 2.0][]
-  * 2016-01-09: [Version 2.1][]
-
-[Version 1.3]: http://jblevins.org/projects/markdown-mode/rev-1-3
-[Version 1.5]: http://jblevins.org/projects/markdown-mode/rev-1-5
-[Version 1.6]: http://jblevins.org/projects/markdown-mode/rev-1-6
-[Version 1.7]: http://jblevins.org/projects/markdown-mode/rev-1-7
-[Version 1.8]: http://jblevins.org/projects/markdown-mode/rev-1-8
-[Version 1.8.1]: http://jblevins.org/projects/markdown-mode/rev-1-8-1
-[Version 1.9]: http://jblevins.org/projects/markdown-mode/rev-1-9
-[Version 2.0]: http://jblevins.org/projects/markdown-mode/rev-2-0
-[Version 2.1]: http://jblevins.org/projects/markdown-mode/rev-2-1
-
+  * 2007-10-11: [Version 1.5](http://jblevins.org/projects/markdown-mode/rev-1-5)
+  * 2008-06-04: [Version 1.6](http://jblevins.org/projects/markdown-mode/rev-1-6)
+  * 2009-10-01: [Version 1.7](http://jblevins.org/projects/markdown-mode/rev-1-7)
+  * 2011-08-12: [Version 1.8](http://jblevins.org/projects/markdown-mode/rev-1-8)
+  * 2011-08-15: [Version 1.8.1](http://jblevins.org/projects/markdown-mode/rev-1-8-1)
+  * 2013-01-25: [Version 1.9](http://jblevins.org/projects/markdown-mode/rev-1-9)
+  * 2013-03-24: [Version 2.0](http://jblevins.org/projects/markdown-mode/rev-2-0)
+  * 2016-01-09: [Version 2.1](http://jblevins.org/projects/markdown-mode/rev-2-1)
