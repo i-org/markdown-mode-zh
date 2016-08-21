@@ -1,1 +1,4 @@
 *.elc
+.projectile
+.directory
+2.el
